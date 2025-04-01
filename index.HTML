@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع شركة الشرق الأوسط للملابس غير المنسوجة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+        }
+        /* Make sure images don't exceed their container */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block; /* Ensure image is treated as a block element */
+        }
+
+        #products-container {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 20px; /* Add some padding at the bottom for scrollbar */
+            -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+        }
+
+        #products-container .product-item {
+            display: inline-block;
+            width: 280px; /* Increased width of the product cards */
+            margin-right: 16px; /* Space between product cards */
+            vertical-align: top; /* Align items to the top */
+        }
+
+        #products-container .product-item:last-child {
+            margin-right: 0; /* Remove margin from the last item */
+        }
+
+        .product-item {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .product-item:hover {
+            transform: translateY(-0.5rem);
+        }
+
+        .product-item img {
+            height: 100px; /* Fixed height for the logo images */
+            margin-bottom: 1rem;
+            object-fit: contain; /* Ensure the image fits within the container */
+        }
+
+        .product-item h3 {
+            font-size: 1.25rem;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .product-item p {
+            font-size: 0.875rem;
+            color: #718096;
+            margin-bottom: 1rem;
+        }
+
+        .product-item button {
+            background-color: #4c51bf;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s ease;
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+        }
+
+        .product-item button:hover {
+            background-color: #363e92;
+        }
+
+        @media (max-width: 768px) {
+            #products-container {
+                margin-left: -1rem;
+            }
+            #products-container .product-item {
+                margin-left: 1rem;
+            }
+        }
+
+    </style>
+    <script>
+        function showProductDetails(name, description) {
+            alert("اسم المنتج: " + name + "\n" + "الوصف: " + description);
+        }
+    </script>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-blue-500 shadow-md sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="flex items-center text-white text-xl font-bold">
+                <img src="IMG_5086.PNG" alt="شعار الشركة" class="mr-2 h-12">
+                <span class="font-tajawal">الشرق الأوسط للملابس غير المنسوجة</span>
+            </a>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6">
+                    <li><a href="#home" class="text-gray-200 hover:text-white transition-colors duration-300 font-tajawal">الرئيسية</a></li>
+                    <li><a href="#products" class="text-gray-200 hover:text-white transition-colors duration-300 font-tajawal">المنتجات</a></li>
+                    <li><a href="#contact" class="text-gray-200 hover:text-white transition-colors duration-300 font-tajawal">تواصل معنا</a></li>
+                </ul>
+            </nav>
+            <button id="hamburger-btn" class="md:hidden text-white focus:outline-none" aria-label="القائمة">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <div id="mobile-menu" class="hidden fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-90 z-20">
+        <div class="bg-gray-800 w-80 h-full absolute right-0 p-6">
+            <div class="flex justify-end mb-4">
+                <button id="close-menu-btn" class="text-white focus:outline-none" aria-label="إغلاق القائمة">
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <nav class="block">
+                <ul class="space-y-4">
+                    <li><a href="#home" class="block text-gray-200 hover:text-white transition-colors duration-300 text-lg font-tajawal">الرئيسية</a></li>
+                    <li><a href="#products" class="block text-gray-200 hover:text-white transition-colors duration-300 text-lg font-tajawal">المنتجات</a></li>
+                    <li><a href="#contact" class="block text-gray-200 hover:text-white transition-colors duration-300 text-lg font-tajawal">تواصل معنا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <section id="home" class="container mx-auto px-4 py-20 flex flex-col md:flex-row items-center justify-center gap-10">
+        <div class="md:w-1/2 text-center md:text-left">
+            <h2 class="text-3xl font-bold text-blue-600 mb-4 font-tajawal">الشرق الأوسط للملابس غير المنسوجة</h2>
+            <p class="text-gray-700 text-lg mb-8 font-tajawal">
+                نحن شركة متخصصة في تصنيع ملابس غير منسوجة عالية الجودة، بما في ذلك الملابس الطبية والأقنعة الجراحية والأغطية الجراحية.
+            </p>
+            <a href="#products" class="bg-green-500 text-white py-3 px-6 rounded-full hover:bg-green-700 transition-colors duration-300 font-tajawal">اكتشف منتجاتنا</a>
+        </div>
+        <div class="md:w-1/2">
+            <img src="app_logo.jpg" alt="منتجات الشركة" class="rounded-lg shadow-lg">
+        </div>
+    </section>
+
+    <section id="products" class="bg-gray-50 py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-blue-600 mb-12 text-center font-tajawal">منتجاتنا</h2>
+            <div id="products-container" class="flex">
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Surgical gown">
+                    <h3>Surgical gown</h3>
+                    <p>ملابس جراحية</p>
+                    <button onclick="showProductDetails('Surgical gown', 'ملابس جراحية مصممة لتوفير الراحة والحماية القصوى للجراحين.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Middle brace">
+                    <h3>Middle brace</h3>
+                    <p>دعامة وسطى</p>
+                    <button onclick="showProductDetails('Middle brace', 'دعامة طبية تستخدم لتثبيت ودعم منطقة الوسط.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Full brace">
+                    <h3>Full brace</h3>
+                    <p>دعامة كاملة</p>
+                    <button onclick="showProductDetails('Full brace', 'دعامة طبية توفر الدعم الشامل للجزء العلوي من الجسم.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="General pack">
+                    <h3>General pack</h3>
+                    <p>عبوة عامة</p>
+                    <button onclick="showProductDetails('General pack', 'مجموعة أدوات ومستلزمات طبية للاستخدامات العامة.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Hip pack">
+                    <h3>Hip pack</h3>
+                    <p>عبوة ورك</p>
+                    <button onclick="showProductDetails('Hip pack', 'مجموعة أدوات ومستلزمات طبية خاصة بعمليات منطقة الورك.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Extremity pack">
+                    <h3>Extremity pack</h3>
+                    <p>عبوة طرفية</p>
+                    <button onclick="showProductDetails('Extremity pack', 'مجموعة أدوات ومستلزمات طبية لجراحة الأطراف.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Knee pack">
+                    <h3>Knee pack</h3>
+                    <p>عبوة ركبة</p>
+                    <button onclick="showProductDetails('Knee pack', 'مجموعة أدوات ومستلزمات طبية خاصة بعمليات الركبة.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Ophthalmic pack">
+                    <h3>Ophthalmic pack</h3>
+                    <p>عبوة طب العيون</p>
+                    <button onclick="showProductDetails('Ophthalmic pack', 'مجموعة أدوات ومستلزمات طبية لجراحة العيون.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Spinal pack">
+                    <h3>Spinal pack</h3>
+                    <p>عبوة العمود الفقري</p>
+                    <button onclick="showProductDetails('Spinal pack', 'مجموعة أدوات ومستلزمات طبية لجراحة العمود الفقري.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Cesarean pack">
+                    <h3>Cesarean pack</h3>
+                    <p>عبوة قيصرية</p>
+                    <button onclick="showProductDetails('Cesarean pack', 'مجموعة أدوات ومستلزمات طبية خاصة بالولادة القيصرية.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Delivery pack/IVF">
+                    <h3>Delivery pack/IVF</h3>
+                    <p>عبوة ولادة/أطفال الأنابيب</p>
+                    <button onclick="showProductDetails('Delivery pack/IVF', 'مجموعة أدوات ومستلزمات طبية خاصة بعمليات الولادة وأطفال الأنابيب.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Cystoscopy pack">
+                    <h3>Cystoscopy pack</h3>
+                    <p>عبوة تنظير المثانة</p>
+                    <button onclick="showProductDetails('Cystoscopy pack', 'مجموعة أدوات ومستلزمات طبية خاصة بتنظير المثانة.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="T.U.R pack">
+                    <h3>T.U.R pack</h3>
+                    <p>عبوة T.U.R</p>
+                    <button onclick="showProductDetails('T.U.R pack', 'مجموعة أدوات ومستلزمات طبية خاصة باستئصال البروستاتا عبر الإحليل.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Universal pack">
+                    <h3>Universal pack</h3>
+                    <p>عبوة عالمية</p>
+                    <button onclick="showProductDetails('Universal pack', 'مجموعة أدوات ومستلزمات طبية للاستخدامات الجراحية المتعددة.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Laparotomy pack">
+                    <h3>Laparotomy pack</h3>
+                    <p>عبوة حج البطن</p>
+                    <button onclick="showProductDetails('Laparotomy pack', 'مجموعة أدوات ومستلزمات طبية خاصة بعمليات فتح البطن.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Laparoscopy pack">
+                    <h3>Laparoscopy pack</h3>
+                    <p>عبوة تنظير البطن</p>
+                    <button onclick="showProductDetails('Laparoscopy pack', 'مجموعة أدوات ومستلزمات طبية خاصة بعمليات تنظير البطن.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Shoulder pack">
+                    <h3>Shoulder pack</h3>
+                    <p>عبوة كتف</p>
+                    <button onclick="showProductDetails('Shoulder pack', 'مجموعة أدوات ومستلزمات طبية خاصة بعمليات الكتف.')">عرض التفاصيل</button>
+                </div>
+                 <div class="product-item">
+                    <img src="app_logo.jpg" alt="Orthopedic split pack">
+                    <h3>Orthopedic split pack</h3>
+                    <p>عبوة جراحة العظام المنقسمة</p>
+                    <button onclick="showProductDetails('Orthopedic split pack', 'مجموعة أدوات ومستلزمات طبية لجراحات العظام التي تتطلب تقسيم المنطقة الجراحية.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Cardio vascular pack">
+                    <h3>Cardio vascular pack</h3>
+                    <p>عبوة القلب والأوعية الدموية</p>
+                    <button onclick="showProductDetails('Cardio vascular pack', 'مجموعة أدوات ومستلزمات طبية خاصة بجراحات القلب والأوعية الدموية.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Femoral Angiography pack">
+                    <h3>Femoral Angiography pack</h3>
+                    <p>عبوة تصوير الأوعية الفخذية</p>
+                    <button onclick="showProductDetails('Femoral Angiography pack', 'مجموعة أدوات ومستلزمات طبية خاصة بتصوير الأوعية الفخذية.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Radial Angiography pack">
+                    <h3>Radial Angiography pack</h3>
+                    <p>عبوة تصوير الأوعية الكعبرية</p>
+                    <button onclick="showProductDetails('Radial Angiography pack', 'مجموعة أدوات ومستلزمات طبية خاصة بتصوير الأوعية الكعبرية.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Craniotomy pack">
+                    <h3>Craniotomy pack</h3>
+                    <p>عبوة حج القحف</p>
+                    <button onclick="showProductDetails('Craniotomy pack', 'مجموعة أدوات ومستلزمات طبية خاصة بعمليات حج القحف.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Surgical drape">
+                    <h3>Surgical drape</h3>
+                    <p>ستارة جراحية</p>
+                    <button onclick="showProductDetails('Surgical drape', 'ستارة معقمة تستخدم لتغطية المريض وتوفير بيئة جراحية معقمة.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Extremity drape">
+                    <h3>Extremity drape</h3>
+                    <p>ستارة طرفية</p>
+                    <button onclick="showProductDetails('Extremity drape', 'ستارة معقمة تستخدم لتغطية الأطراف أثناء الجراحة.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Trolley drape">
+                    <h3>Trolley drape</h3>
+                    <p>ستارة ترولي</p>
+                    <button onclick="showProductDetails('Trolley drape', 'غطاء معقم لعربة الأدوات الجراحية.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Mayo cover">
+                    <h3>Mayo cover</h3>
+                    <p>غطاء مايو</p>
+                    <button onclick="showProductDetails('Mayo cover', 'غطاء معقم لطاولة مايو الجراحية.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Adhesive drape">
+                    <h3>Adhesive drape</h3>
+                    <p>ستارة لاصقة</p>
+                    <button onclick="showProductDetails('Adhesive drape', 'ستارة جراحية ذاتية اللصق لتثبيت سهل ومحكم.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Utility drape">
+                    <h3>Utility drape</h3>
+                    <p>ستارة متعددة الاستخدامات</p>
+                    <button onclick="showProductDetails('Utility drape', 'ستارة جراحية للاستخدامات العامة في العمليات الجراحية.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Spinal drape">
+                    <h3>Spinal drape</h3>
+                    <p>ستارة العمود الفقري</p>
+                    <button onclick="showProductDetails('Spinal drape', 'ستارة معقمة تستخدم في جراحات العمود الفقري.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="C.V.P drape">
+                    <h3>C.V.P drape</h3>
+                    <p>ستارة C.V.P</p>
+                    <button onclick="showProductDetails('C.V.P drape', 'ستارة معقمة تستخدم في عمليات القسطرة الوريدية المركزية.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Fenestrated drape">
+                    <h3>Fenestrated drape</h3>
+                    <p>ستارة نافذة</p>
+                    <button onclick="showProductDetails('Fenestrated drape', 'ستارة جراحية تحتوي على فتحة لتحديد منطقة الجراحة.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Roll bed sheet">
+                    <h3>Roll bed sheet</h3>
+                    <p>ملاءة سرير ملفوفة</p>
+                    <button onclick="showProductDetails('Roll bed sheet', 'ملاءة سرير معقمة وملفوفة لسهولة الاستخدام.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Ophthalmic drape">
+                    <h3>Ophthalmic drape</h3>
+                    <p>ستارة طب العيون</p>
+                    <button onclick="showProductDetails('Ophthalmic drape', 'ستارة معقمة تستخدم في جراحات العيون.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Cesarean drape">
+                    <h3>Cesarean drape</h3>
+                    <p>ستارة قيصرية</p>
+                    <button onclick="showProductDetails('Cesarean drape', 'ستارة معقمة تستخدم في عمليات الولادة القيصرية.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Isolation gown">
+                    <h3>Isolation gown</h3>
+                    <p>رداء عزل</p>
+                    <button onclick="showProductDetails('Isolation gown', 'رداء واقي يستخدم لمنع انتقال العدوى.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Visitor coat">
+                    <h3>Visitor coat</h3>
+                    <p>معطف زائر</p>
+                    <button onclick="showProductDetails('Visitor coat', 'معطف يستخدمه الزوار في المناطق الطبية.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Short">
+                    <h3>Short</h3>
+                     <p>شورت</p>
+                    <button onclick="showProductDetails('Short', 'شورت طبي يستخدم في العمليات الجراحية.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Trousers">
+                    <h3>Trousers</h3>
+                     <p>بنطلون</p>
+                    <button onclick="showProductDetails('Trousers', 'بنطلون طبي يستخدم في العمليات الجراحية.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Under & Bra">
+                    <h3>Under & Bra</h3>
+                     <p>ملابس داخلية وحمالة صدر</p>
+                    <button onclick="showProductDetails('Under & Bra', 'ملابس داخلية وحمالة صدر طبية تستخدم في العمليات الجراحية.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Bed sheet">
+                    <h3>Bed sheet</h3>
+                     <p>ملاءة سرير</p>
+                    <button onclick="showProductDetails('Bed sheet', 'ملاءة سرير طبية تستخدم في العمليات الجراحية.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Over head">
+                    <h3>Over head</h3>
+                     <p>غطاء رأس</p>
+                    <button onclick="showProductDetails('Over head', 'غطاء رأس طبي يستخدم في العمليات الجراحية.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Over shoes">
+                    <h3>Over shoes</h3>
+                     <p>غطاء حذاء</p>
+                    <button onclick="showProductDetails('Over shoes', 'غطاء حذاء طبي يستخدم في العمليات الجراحية.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Face mask">
+                    <h3>Face mask</h3>
+                     <p>قناع 
+                        وجه</p>
+                    <button onclick="showProductDetails('Face mask', 'قناع وجه طبي يستخدم في العمليات الجراحية.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Surgeon cap">
+                    <h3>Surgeon cap</h3>
+                    <p>قبعة جراح</p>
+                    <button onclick="showProductDetails('Surgeon cap', 'قبعة جراحية طبية تستخدم في العمليات الجراحية.')">عرض التفاصيل</button>
+                </div>
+                <div class="product-item">
+                    <img src="app_logo.jpg" alt="Bouffant cap">
+                    <h3>Bouffant cap</h3>
+                    <p>قبعة منتفخة</p>
+                    <button onclick="showProductDetails('Bouffant cap', 'قبعة طبية منتفخة تستخدم في العمليات الجراحية.')">عرض التفاصيل</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="bg-blue-100 py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-blue-600 mb-12 text-center font-tajawal">تواصل معنا</h2>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+                <div class="md:w-1/2 text-center">
+                    <h3 class="text-2xl font-semibold text-blue-500 mb-4 font-tajawal">معلومات الاتصال</h3>
+                    <p class="text-gray-700 text-lg mb-2 font-tajawal">العنوان: المنطقة الصناعية، مدينة بدر، القاهرة، مصر</p>
+                    <p class="text-gray-700 text-lg mb-2 font-tajawal">الهاتف: +20 123 456 7890</p>
+                    <p class="text-gray-700 text-lg mb-4 font-tajawal">البريد الإلكتروني: info@example.com</p>
+                     <div class="flex justify-center mt-4">
+                        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 mr-4" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H6v4h4v12h6V14h4l1-5h-5v-3a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                        <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 mr-4" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                        <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-twitter"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <form class="bg-white rounded-lg shadow-md p-8">
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-700 text-sm font-bold mb-2 font-tajawal">الاسم</label>
+                            <input type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="أدخل اسمك">
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-gray-700 text-sm font-bold mb-2 font-tajawal">البريد الإلكتروني</label>
+                            <input type="email" id="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="أدخل بريدك الإلكتروني">
+                        </div>
+                        <div class="mb-4">
+                            <label for="message" class="block text-gray-700 text-sm font-bold mb-2 font-tajawal">الرسالة</label>
+                            <textarea id="message" name="message" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32 resize-y" placeholder="أدخل رسالتك"></textarea>
+                        </div>
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline font-tajawal">إرسال</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto px-4 text-center font-tajawal">
+            &copy; 2024 شركة الشرق الأوسط للملابس غير المنسوجة. جميع الحقوق محفوظة.
+        </div>
+    </footer>
+
+    <script>
+        const hamburgerBtn = document.getElementById("hamburger-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const closeMenuBtn = document.getElementById("close-menu-btn");
+        const mobileMenuLinks = mobileMenu.querySelectorAll("a");
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const sections = document.querySelectorAll('section');
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle("hidden");
+        }
+
+        hamburgerBtn.addEventListener("click", toggleMobileMenu);
+        closeMenuBtn.addEventListener("click", toggleMobileMenu);
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener("click", toggleMobileMenu);
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(event.target) && event.target !== hamburgerBtn) {
+                toggleMobileMenu();
+            }
+        });
+
+        function updateActiveNavLink() {
+            let currentSectionId = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight - 100) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === currentSectionId) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNavLink);
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
