@@ -568,6 +568,7 @@ document.addEventListener('DOMContentLoaded', initializeQuickAccessToolbar);
                     <li><a href="#home" class="text-gray-200 hover:text-white transition-colors duration-300 font-tajawal">الرئيسية</a></li>
                     <li><a href="#products" class="text-gray-200 hover:text-white transition-colors duration-300 font-tajawal">المنتجات</a></li>
                     <li><a href="#certifications" class="text-gray-200 hover:text-white transition-colors duration-300 font-tajawal">الشهادات</a></li>
+                    <li><a href="gallery.html" class="text-gray-200 hover:text-white transition-colors duration-300 font-tajawal">معرض الصور</a></li>
                     <li><a href="#contact" class="text-gray-200 hover:text-white transition-colors duration-300 font-tajawal">تواصل معنا</a></li>
                 </ul>
             </nav>
@@ -576,6 +577,20 @@ document.addEventListener('DOMContentLoaded', initializeQuickAccessToolbar);
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                 </svg>
             </button>
+            <script>
+                // هذا الكود اختياري، ويمكنك الاستغناء عنه إذا كان الرابط يعمل بشكل صحيح
+                // Get the link element
+                const galleryLink = document.querySelector('a[href="gallery.html"]');
+        
+                // Add a click event listener to the link
+                galleryLink.addEventListener('click', function(event) {
+                    // Prevent the default behavior of the link (which is to try to navigate to #gallery.html)
+                    event.preventDefault();
+        
+                    // Redirect the user to the gallery page
+                    window.location.href = "gallery.html"; // تأكد من أن المسار صحيح
+                });
+            </script>
         </div>
     </header>
 
@@ -592,7 +607,8 @@ document.addEventListener('DOMContentLoaded', initializeQuickAccessToolbar);
                 <ul class="space-y-4">
                     <li><a href="#home" class="block text-gray-700 hover:text-blue-500 transition-colors duration-300 text-lg font-tajawal">الرئيسية</a></li>
                     <li><a href="#products" class="block text-gray-700 hover:text-blue-500 transition-colors duration-300 text-lg font-tajawal">المنتجات</a></li>
-                    <li><a href="#certifications" class="block text-gray-700 hover:text-blue-500 transition-colors duration-300 text-lg font-tajawal">المنتجات</a></li>
+                    <li><a href="#certifications" class="block text-gray-700 hover:text-blue-500 transition-colors duration-300 text-lg font-tajawal">الشهادات</a></li>
+                    <li><a href="gallery.html" class="block text-gray-700 hover:text-blue-500 transition-colors duration-300 text-lg font-tajawal">معرض الصور</a></li>
                     <li><a href="#contact" class="block text-gray-700 hover:text-blue-500 transition-colors duration-300 text-lg font-tajawal">تواصل معنا</a></li>
                 </ul>
             </nav>
