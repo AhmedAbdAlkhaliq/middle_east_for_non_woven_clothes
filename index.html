@@ -411,40 +411,37 @@ function handleToolbarAction(action) {
 
 // Ensure toolbar initializes on document load
 document.addEventListener('DOMContentLoaded', initializeQuickAccessToolbar);
-document.addEventListener('click', (event) => {
-                if (mobileMenu.classList.contains('active') && !mobileMenu.contains(event.target) && event.target !== hamburgerBtn) {
-                    toggleMobileMenu();
-                }
-            });
+
+        document.addEventListener('click', (event) => {
+            if (mobileMenu.classList.contains('active') && !mobileMenu.contains(event.target) && event.target !== hamburgerBtn) {
+                toggleMobileMenu();
+            }
+        });
 
         window.addEventListener('load', () => {
             // Mobile menu functionality
             const hamburgerBtn = document.getElementById('hamburger-btn');
-            
             const mobileMenu = document.getElementById('mobile-menu');
             const navLinks = document.querySelectorAll('.nav-links a');
-
             const mobileMenuLinks = mobileMenu.querySelectorAll('a');
             const closeMenuBtn = document.getElementById('close-menu-btn');
-            
-            
 
             function toggleMobileMenu() {
                 mobileMenu.classList.toggle('active');
                 document.body.classList.toggle('overflow-hidden'); // Prevent scrolling when menu is open
-
             }
 
             if (hamburgerBtn) { // Check if the element exists
                 hamburgerBtn.addEventListener('click', toggleMobileMenu);
             }
             if (closeMenuBtn) {
-              closeMenuBtn.addEventListener('click', toggleMobileMenu);
+                closeMenuBtn.addEventListener('click', toggleMobileMenu);
             }
 
             mobileMenuLinks.forEach(link => {
                 link.addEventListener('click', toggleMobileMenu);
             });
+
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault(); // Prevent default anchor behavior
@@ -455,15 +452,30 @@ document.addEventListener('click', (event) => {
                         targetElement.scrollIntoView({ behavior: 'smooth' }); // Scroll to target
                     }
 
-                     // Close mobile menu if it's open
+                    // Close mobile menu if it's open
                     if (mobileMenu.classList.contains('active')) {
                         toggleMobileMenu();
                     }
                 });
             });
 
-            // Close menu on outside click
-          
+            // Gallery Link in Navbar
+            const galleryLink = document.querySelector('a[href="gallery.html"]');
+            if (galleryLink) {
+                galleryLink.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    window.location.href = "gallery.html";
+                });
+            }
+
+            // Gallery Link in Mobile Menu
+            const mobileGalleryLink = mobileMenu.querySelector('a[href="gallery.html"]');
+            if (mobileGalleryLink) {
+                mobileGalleryLink.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    window.location.href = "gallery.html";
+                });
+            }
 
             // Slider functionality without Swiper.js
             const slides = document.querySelectorAll('.swiper-slide');
@@ -472,12 +484,8 @@ document.addEventListener('click', (event) => {
             const prevButton = document.createElement('button');
             const nextButton = document.createElement('button');
 
-
             let currentSlide = 0;
             let intervalId;
-
-          
-
 
             function showSlide(index) {
                 if (index < 0) {
@@ -503,7 +511,7 @@ document.addEventListener('click', (event) => {
 
                 // Update navigation button disabled state
                 prevButton.classList.toggle('disabled', currentSlide === 0);
-                nextButton.classList.toggle('disabled', currentSlide === slides.length -1);
+                nextButton.classList.toggle('disabled', currentSlide === slides.length - 1);
             }
 
             function nextSlide() {
@@ -548,7 +556,6 @@ document.addEventListener('click', (event) => {
             sliderContainer.appendChild(prevButton);
             sliderContainer.appendChild(nextButton);
 
-
             // Initialize slider
             createControls();
             showSlide(currentSlide);
@@ -560,7 +567,6 @@ document.addEventListener('click', (event) => {
 
         });
     </script>
-    
 </head>
 <body class="bg-gray-100">
     <header class="bg-blue-500 shadow-md sticky top-0 z-10">
@@ -569,7 +575,7 @@ document.addEventListener('click', (event) => {
                 <img src="IMG_5086.PNG" alt="شعار الشركة" class="mr-2 h-12">
                 <span class="font-tajawal">الشرق الاوسط للملابس الغير منسوجة</span>
             </a>
-            
+
             <nav class="hidden md:block nav-links">
                 <ul class="flex space-x-6">
                     <li><a href="#home" class="text-gray-200 hover:text-white transition-colors duration-300 font-tajawal">الرئيسية</a></li>
@@ -584,19 +590,6 @@ document.addEventListener('click', (event) => {
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                 </svg>
             </button>
-            <script>
-                // Get the link element
-                const galleryLink = document.querySelector('a[href="gallery.html"]');
-        
-                // Add a click event listener to the link
-                galleryLink.addEventListener('click', function(event) {
-                    // Prevent the default behavior of the link (which is to try to navigate to #gallery.html)
-                    event.preventDefault();
-        
-                    // Redirect the user to the gallery page
-                    window.location.href = "gallery.html"; // تأكد من أن المسار صحيح
-                });
-            </script>
         </div>
     </header>
 
@@ -604,7 +597,7 @@ document.addEventListener('click', (event) => {
         <div class="menu-content">
             <div class="flex justify-end mb-4">
                 <button id="close-menu-btn" class="text-gray-700 focus:outline-none close-menu-btn" aria-label="إغلاق القائمة">
-                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
